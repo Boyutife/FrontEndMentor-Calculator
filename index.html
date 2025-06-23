@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inconsolata:wght@200..900&family=League+Spartan:wght@100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+
+    <title>Frontend Mentor | Calculator app</title>
+  </head>
+  <body class="bg-[var(--bg-main)] font-sans">
+    <div
+      class="body_container container mx-auto grid h-[100dvh] grid-rows-[auto_auto_auto_auto] p-6 md:w-1/4"
+    >
+      <header class="flex items-start justify-between">
+        <h1 class="text-4xl font-bold text-[var(--text-main)]">calc</h1>
+        <div class="flex items-end">
+          <h2 class="text-xs font-semibold text-[var(--text-main)]">THEME</h2>
+          <form
+            class="theme_mode relative ml-8 flex items-center space-x-1 p-1 text-[var(--text-main)]"
+          >
+            <div
+              class="absolute bottom-0 left-0 flex h-5 w-full items-center rounded-xl bg-[var(--bg-toggle)] px-1.5 py-3"
+            >
+              <div
+                id="theme-toggle-indicator"
+                class="circle h-4 w-4 rounded-full bg-[var(--key-accent-bg)] transition-transform duration-300"
+              ></div>
+            </div>
+            <div class="theme1_mode flex flex-col space-y-2">
+              <label for="theme1">1</label>
+              <input
+                type="radio"
+                name="theme_mode"
+                id="theme1"
+                value="theme1"
+                class="opacity-0"
+              />
+            </div>
+            <div class="theme2_mode flex flex-col space-y-2">
+              <label for="theme2">2</label>
+              <input
+                type="radio"
+                name="theme_mode"
+                id="theme2"
+                value="theme2"
+                class="opacity-0"
+              />
+            </div>
+            <div class="theme3_mode flex flex-col space-y-2">
+              <label for="theme3">3</label>
+              <input
+                type="radio"
+                name="theme_mode"
+                id="theme3"
+                value="theme3"
+                class="opacity-0"
+              />
+            </div>
+          </form>
+        </div>
+      </header>
+      <section>
+        <div>
+          <input
+            id="screen"
+            type="text"
+            class="h-24 w-full rounded-lg bg-[var(--bg-screen)] px-4 py-2 text-right text-4xl font-bold text-[var(--text-main)] transition-all"
+            placeholder="0"
+            readonly
+          />
+        </div>
+      </section>
+      <main class="grid grid-cols-4 gap-4 rounded-lg bg-[var(--bg-toggle)] p-6">
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="7"
+        >
+          7
+        </button>
+        <button
+          class="key active:[--key-primary-bg] rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="8"
+        >
+          8
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="9"
+        >
+          9
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-secondary-bg] p-1.5 text-2xl font-bold text-[var(--text-white)] [box-shadow:0px_5px_var(--key-secondary-shadow)]"
+          data-key="Del"
+        >
+          DEL
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="4"
+        >
+          4
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="5"
+        >
+          5
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="6"
+        >
+          6
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="+"
+        >
+          +
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="1"
+        >
+          1
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="2"
+        >
+          2
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="3"
+        >
+          3
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="-"
+        >
+          -
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="."
+        >
+          .
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="0"
+        >
+          0
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="/"
+        >
+          /
+        </button>
+        <button
+          class="key rounded-lg bg-[--key-primary-bg] p-1.5 text-4xl font-bold text-[--text-on-primary] [box-shadow:0px_5px_var(--key-primary-shadow)]"
+          data-key="x"
+        >
+          x
+        </button>
+        <button
+          class="key col-span-2 rounded-lg bg-[--key-secondary-bg] p-1.5 text-xl font-bold text-[var(--text-white)] [box-shadow:0px_5px_var(--key-secondary-shadow)]"
+          data-key="RESET"
+        >
+          RESET
+        </button>
+        <button
+          class="key col-span-2 rounded-lg bg-[var(--key-accent-bg)] p-1.5 text-2xl font-bold text-[var(--text-on-accent)] [box-shadow:0px_5px_var(--key-accent-shadow)]"
+          data-key="="
+        >
+          =
+        </button>
+      </main>
+
+      <footer class="mt-4 text-center text-xs text-[var(--key-secondary-bg)]">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          class="text-[var(--text-main)]"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="#" target="_blank" class="text-[var(--text-main)]">Boyutife</a
+        >.
+      </footer>
+    </div>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>
