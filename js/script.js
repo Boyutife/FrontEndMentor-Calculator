@@ -33,16 +33,21 @@ if (savedTheme) {
 }
 
 function handleInput(key) {
-  if (currentInput === 'Error') {
-    currentInput = ''
-  }
-  const parts = currentInput.split(/[\+\-x\/]/)
-  const lastPart = parts[parts.length - 1]
+  if (currentInput === 'Error') currentInput = ''
+
   if (justEvaluated && (!isNaN(key) || key === '.')) {
     currentInput = ''
-    justEvaluated = false
-  } else {
-    justEvaluated = false
+  }
+  justEvaluated = false
+
+  const parts = /[+\-x/]/.test(currentInput)
+    ? currentInput.split(/[+\-x/]/)
+    : [currentInput]
+
+  const lastPart = parts[parts.length - 1]
+
+  if (lastPart === '0' && key === '0') {
+    return
   }
 
   if (!isNaN(key)) {
@@ -51,19 +56,17 @@ function handleInput(key) {
     }
   } else if (operators.includes(key)) {
     if (currentInput === '' && key !== '-') return
-    const lastChar = currentInput[currentInput.length - 1]
+    const lastChar = currentInput.slice(-1)
     if (!operators.includes(lastChar)) {
       currentInput += key
     }
   } else if (key === '.') {
-    const parts = currentInput.split(/[+\-*/]/)
-    const lastPart = parts[parts.length - 1]
     if (!lastPart.includes('.')) {
       currentInput += key
     }
   } else if (key === '=' || key === 'Enter') {
-    if (currentInput && /[0-9]$/.test(currentInput)) {
-      currentInput = calculate(currentInput)
+    if (/[0-9]$/.test(currentInput)) {
+      currentInput = String(calculate(currentInput))
       justEvaluated = true
     }
   } else if (key === 'Del' || key === 'Backspace') {
@@ -113,6 +116,7 @@ document.addEventListener('keydown', (e) => {
   ]
   if (allowedKeys.includes(key)) {
     e.preventDefault()
+    if (key == '*') key = 'x'
     handleInput(key)
   }
 })
